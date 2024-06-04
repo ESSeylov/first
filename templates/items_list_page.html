@@ -8,6 +8,11 @@
     <h1>Магазин</h1><br>
     <h3><a href="/">Главная страница</a> / <a href="/items">Cписок товаров</a> / <a href="/about">Команда разработки</a></h3><br>
     <h2>Список товаров</h2><br>
-    {{ list_items|safe }}
+    {% comment %} {{ list_items|safe }} {% endcomment %}
+    <ol>
+        {% for item in list_items %}
+            <li><a href={{item.id}}>{{ item.name}}</a></li>
+        {% endfor %}
+    </ol>
 </body>
 </html>

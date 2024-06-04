@@ -15,28 +15,29 @@ def get_item(request, item_id):
     for i in items:
         if int(i["id"]) == int(item_id):
             if i["quantity"] > 0:
-                item = (f'''{i["name"]}<br></br>
-                        Количество: {i["quantity"]}<br>''')
+                # item = (f'''{i["name"]}<br></br>
+                #         Количество: {i["quantity"]}<br>''')
+                context = {"item": i}
             else:
-                item = f'''{i["name"]}<br></br>Только по предзаказу<br>'''
-            context = {"item": item}
+                # item = f'''{i["name"]}<br></br>Только по предзаказу<br>'''
+                context = {"item": i}
             return render(request, "item_detail_page.html", context)
     else:
-        item = f"""Товар с id={item_id} не найден<br>"""
-        context = {"item": item}
+        # item = f"""Товар с id={item_id} не найден<br>"""
+        i = {"id": item_id, "name": f"""Товар с id={item_id} не найден"""}
+        context = {"item": i}
     return render(request, "item_detail_page.html", context)
 
 
 def get_items(request):
-
-    list_items = "".join(
-        [
-            f"""<a href="{item['id']}">{item['id']}.
-                           {item['name']}</a><br>"""
-            for item in items
-        ]
-    )
+    # list_items = "".join(
+    #     [
+    #         f"""<a href="{item['id']}">{item['id']}.
+    #                        {item['name']}</a><br>"""
+    #         for item in items
+    #     ]
+    # )
     context = {
-        "list_items": list_items,
+        "list_items": items,
     }
     return render(request, "items_list_page.html", context)
