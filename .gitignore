@@ -1,1 +1,6 @@
-/django_venv/*
+.idea/
+.vscode/
+*venv/
+*.pyc
+__pycache__/
+db.*

@@ -26,15 +26,14 @@ def about(request):
 
 
 def get_item(request, item_id):
-    number_page = item_id
     for i in items:
-        if int(i['id']) == int(number_page):
+        if int(i['id']) == int(item_id):
             item = str(i['name']) + '<br>'
             item += '''<br><a href="/items">Назад к списку товаров</a>'''
             return HttpResponse(item)
-        else:
-            item = (f'''Товар с id={number_page} не найден<br>
-                    <br><a href="/items">Назад к списку товаров</a>''')
+    else:
+        item = (f'''Товар с id={item_id} не найден<br>
+                <br><a href="/items">Назад к списку товаров</a>''')
     return HttpResponse(item)
 
 
