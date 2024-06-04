@@ -4,5 +4,5 @@ from main import views
 urlpatterns = [
     path('', views.home),
     path('about/', views.about),
-    path('items/', include('main.urls'))
+    path('items/', include('store.urls'))
 ]
