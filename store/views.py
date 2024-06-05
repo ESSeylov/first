@@ -12,21 +12,13 @@ from store.models import Item
 
 
 def get_item(request, item_id):
-    query_items = Item.objects.all()
-    for i in query_items:
-        if int(i.id) == int(item_id):
-            if i.quantity > 0:
-                # item = (f'''{i["name"]}<br></br>
-                #         Количество: {i["quantity"]}<br>''')
-                context = {"item": i}
-            else:
-                # item = f'''{i["name"]}<br></br>Только по предзаказу<br>'''
-                context = {"item": i}
-            return render(request, "item_detail_page.html", context)
+    query_items = Item.objects.filter(id=item_id).last()
+    if query_items:
+        context = {"item": query_items}
     else:
-        # item = f"""Товар с id={item_id} не найден<br>"""
-        i = {"id": item_id, "name": f"""Товар с id={item_id} не найден"""}
-        context = {"item": i}
+        query_items = ({"id": item_id,
+                        "name": f"""Товар с id={item_id} не найден"""})
+        context = {"item": query_items}
     return render(request, "item_detail_page.html", context)
 
 
