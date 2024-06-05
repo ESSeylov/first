@@ -1,20 +1,21 @@
 from django.shortcuts import render
-
+from store.models import Item
 # Create your views here.
 
-items = [
-    {"id": 1, "name": "Кроссовки abibas", "quantity": 5},
-    {"id": 2, "name": "Куртка кожаная", "quantity": 2},
-    {"id": 3, "name": "Coca-cola 1 литр", "quantity": 12},
-    {"id": 4, "name": "Картофель фри", "quantity": 0},
-    {"id": 5, "name": "Кепка", "quantity": 124},
-]
+# items = [
+#     {"id": 1, "name": "Кроссовки abibas", "quantity": 5},
+#     {"id": 2, "name": "Куртка кожаная", "quantity": 2},
+#     {"id": 3, "name": "Coca-cola 1 литр", "quantity": 12},
+#     {"id": 4, "name": "Картофель фри", "quantity": 0},
+#     {"id": 5, "name": "Кепка", "quantity": 124},
+# ]
 
 
 def get_item(request, item_id):
-    for i in items:
-        if int(i["id"]) == int(item_id):
-            if i["quantity"] > 0:
+    query_items = Item.objects.all()
+    for i in query_items:
+        if int(i.id) == int(item_id):
+            if i.quantity > 0:
                 # item = (f'''{i["name"]}<br></br>
                 #         Количество: {i["quantity"]}<br>''')
                 context = {"item": i}
@@ -30,6 +31,7 @@ def get_item(request, item_id):
 
 
 def get_items(request):
+    query_items = Item.objects.all()
     # list_items = "".join(
     #     [
     #         f"""<a href="{item['id']}">{item['id']}.
@@ -38,6 +40,6 @@ def get_items(request):
     #     ]
     # )
     context = {
-        "list_items": items,
+        "list_items": query_items,
     }
     return render(request, "items_list_page.html", context)

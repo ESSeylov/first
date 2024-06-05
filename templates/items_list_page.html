@@ -9,10 +9,36 @@
     <h3><a href="/">Главная страница</a> / <a href="/items">Cписок товаров</a> / <a href="/about">Команда разработки</a></h3><br>
     <h2>Список товаров</h2><br>
     {% comment %} {{ list_items|safe }} {% endcomment %}
-    <ol>
+    <div class="cards">
         {% for item in list_items %}
-            <li><a href={{item.id}}>{{ item.name}}</a></li>
+            <div class="cardContainer inactive">
+                <div class="card">
+                <div class="side front">
+                    <a href={{item.id}}><img src={{item.image}} alt={{item.name}} style="width:25%"></a>
+                    <div class="info">
+                        <a href={{item.id}}><h1>{{item.name}}</h1></a>
+                        <p class="price">{{item.price}}</p>
+                        <p>{{item.description}}</p> 
+                        <div class="side back">
+                          </div>
+                        </div>
+                      </div>
+        <style> .card {
+            display: inline-block;
+            border:4px solid #ddd;
+            width: 100%;
+            height: 100%;
+            cursor: pointer;
+            -moz-backface-visibility: hidden;
+            -webkit-transform-style: preserve-3d;
+                    transform-style: preserve-3d;
+            -webkit-transform: translateZ(-100px);
+                    transform: translateZ(-100px);
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+          }
+         
+        </style>
         {% endfor %}
-    </ol>
+    </div>
 </body>
 </html>

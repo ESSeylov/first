@@ -10,6 +10,11 @@
     <h2>Товар</h2><br>
     {% comment %} {{ item|safe }} {% endcomment %}
     <h3><div>{{ item.name }}</div></h3><br>
+    <div>Бренд: {{ item.brand }}</div><br>
+    <div>Цена: {{ item.price }}</div><br>
+    {% if item.description %}
+        <div>Описание: {{ item.description }}</div><br>
+    {% endif %}
     {% if item.quantity %}
         <div>Количество: {{ item.quantity }}</div><br>
     {% else %}
