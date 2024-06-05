@@ -11,6 +11,14 @@ class Item(models.Model):
     description = models.TextField(blank=True, null=True)
     is_active = models.BooleanField(default=True)
     image = models.ImageField(upload_to='images/', blank=True, null=True)
+    color = models.ForeignKey('ItemColor', on_delete=models.CASCADE, blank=True, null=True)
 
     def __str__(self):
         return f'ID:{self.id} {self.brand} {self.name}'
+
+
+class ItemColor(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
