@@ -1,14 +1,12 @@
-<!DOCTYPE html>
-<html lang = "en">
-<head>
-    <meta charset="UTF-8">
-    <title>Store</title>
-</head>
-<body>
+{% extends "base.html" %}
+{% block content_title %}
+<title>Item</title>
+{% endblock content_title %}
+{% block content_body %}
     <h1>Магазин</h1><br>
-    <h3><a href="/">Главная страница</a> / <a href="/items">Cписок товаров</a> / <a href="/about">Команда разработки</a></h3><br>
     <h2>Товар</h2><br>
     {% comment %} {{ item|safe }} {% endcomment %}
+    <img src={{item.image}} alt={{item.name}} style="width:25%">
     <h3><div>{{ item.name }}</div></h3><br>
     <div>Бренд: {{ item.brand }}</div><br>
     <div>Цена: {{ item.price }}</div><br>
@@ -20,5 +18,4 @@
     {% else %}
         <div>Нет в наличии</div><br>
     {% endif %}
-</body>
-</html>
+{% endblock content_body %}

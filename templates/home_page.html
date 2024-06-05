@@ -1,16 +1,12 @@
-<!DOCTYPE html>
-<html lang = "en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
-    <h1>Портал изучения python django</h1><br>
-    <h3><a href="/">Главная страница</a> / <a href="/items">Cписок товаров</a> / <a href="/about">Команда разработки</a></h3><br>
-    <h2>Главная страница</h2><br>
-    <br><a href="/items">Cписок товаров</a>
-    <br><a href="/about">Команда разработки</a></br>
-    <br><strong>Автор</strong>: <i>Сейлов Е.С.</i></br>
-    <br><h1>Портал на этапе разработки</h1><br>
-</body>
-</html>
+{% extends "base.html" %}
+{% block content_title %}
+<title>Home</title>
+{% endblock content_title %}
+{% block content_body %}
+<h1>Портал изучения python django</h1><br>
+<h2>Главная страница</h2><br>
+<br><a href={% url "items" %}>Cписок товаров</a>
+<br><a href={% url "about" %}>Команда разработки</a></br>
+<br><strong>Автор</strong>: <i>Сейлов Е.С.</i></br>
+<br><h1>Портал на этапе разработки</h1><br>
+{% endblock content_body %}
