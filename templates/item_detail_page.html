@@ -9,6 +9,12 @@
     <img src={{item.image}} alt={{item.name}} style="width:25%">
     <h3><div>{{ item.name }}</div></h3><br>
     <div>Бренд: {{ item.brand }}</div><br>
+    <div>{% if item.color.last %}
+                            Цвет товара:
+                            {% for color in item.color.all %}
+                                {{color}}  
+                            {% endfor %}
+                        {% endif %}</div><br>
     <div>Цена: {{ item.price }}</div><br>
     {% if item.description %}
         <div>Описание: {{ item.description }}</div><br>
